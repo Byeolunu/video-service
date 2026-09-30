@@ -7,11 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class VideoMapper {
 
-    private final CreatorMapper creatorMapper;
 
-    public VideoMapper(CreatorMapper creatorMapper) {
-        this.creatorMapper = creatorMapper;
-    }
 
     public Video fromRequest(VideoRequest request) {
         return Video.builder()
@@ -19,7 +15,6 @@ public class VideoMapper {
                 .url(request.getUrl())
                 .description(request.getDescription())
                 .datePublication(request.getDatePublication())
-                .creator(creatorMapper.fromRequest(request.getCreator()))
                 .build();
     }
 }

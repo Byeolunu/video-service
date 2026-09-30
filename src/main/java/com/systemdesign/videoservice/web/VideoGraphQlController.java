@@ -58,7 +58,14 @@ public class VideoGraphQlController {
 
     @MutationMapping
     public Video saveVideo(@Argument VideoRequest video) {
+
+        Creator creator = creatorRepository.save(
+                creatorMapper.fromRequest(video.getCreator())
+        );
+
         Video v = videoMapper.fromRequest(video);
+        v.setCreator(creator);
+
         return videoRepository.save(v);
     }
 
